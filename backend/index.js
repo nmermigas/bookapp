@@ -1,51 +1,33 @@
 import express from "express";
+import bodyParser from "body-parser";
 import { createServer } from "http";
 import morgan from "morgan";
-import { json } from "body-parser";
 const app = express();
 import { MongoClient } from "mongodb";
 import assert from "assert";
-import { connect as _connect, connection } from "mongoose";
+import mongoose from "mongoose";
 
-import Books, { find, remove } from "./models/books";
+import Books from "./models/books.js";
 
 const url = "mongodb://localhost:27017/bookDB";
-const connect = _connect(url);
+const connect = mongoose.connect(url);
+
 // const dbname = "booksDB";
-
-connect.then((db) => {
-  console.log("Connected to MongoDB");
-
-  var newBook = Books({
-    title: "lol",
-    auhtor: "askldjasd",
-    ISBN: "2389472347890",
-  });
-  newBook
-    .save()
-    .then((book) => {
-      console.log(book);
-
-      return find({}).exec();
-    })
-    .then((books) => {
-      console.log(books);
-      return remove({});
-    })
-    .then(() => {
-      return connection.close();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+connect.then(
+  (db) => {
+    console.log("Connected to server");
+  },
+  (err) => {
+    console.log(err);
+  }
+);
 
 // MongoClient.connect(url, (err, client) => {
 //   assert.equal(err, null);
 
 //   console.log("connection established");
 
-//   const db = client.db(dbname);
+//   const db = client.db(db);
 //   const collection = db.collection("books");
 
 //   collection.insertOne(
@@ -68,13 +50,13 @@ connect.then((db) => {
 //   );
 // });
 
-import bookRouter from "./routes/bookRouter";
+import bookRouter from "./routes/bookRouter.js";
 
 const hostname = "localhost";
 const port = 3000;
 
 app.use(morgan("dev"));
-app.use(json());
+app.use(bodyParser.json());
 
 app.use("/books", bookRouter);
 const server = createServer((req, res) => {
@@ -85,5 +67,5 @@ const server = createServer((req, res) => {
 });
 
 app.listen(port || 3000, () => {
-  console.log(`Connected to bakcnet on port ${port}`);
+  console.log(`Connected to backend on port ${port}`);
 });

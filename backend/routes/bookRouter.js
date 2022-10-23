@@ -1,5 +1,8 @@
-const express = require("express");
-const bodyParser = require("body-parser");
+import express from "express";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+
+import Books from "../models/books.js";
 
 const bookRouter = express.Router();
 
@@ -28,4 +31,4 @@ bookRouter.route("/:bookId").delete((req, res, next) => {
   res.json("Deleting the following book: " + req.params.bookId);
 });
 
-module.exports = bookRouter;
+export default bookRouter;

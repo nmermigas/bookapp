@@ -1,5 +1,5 @@
-const mongooose = require("mongooose");
-const Schema = mongooose.Schema;
+import mongoose from "mongoose";
+const Schema = mongoose.Schema;
 
 const ratingSchema = new Schema({
   rating: {
@@ -13,23 +13,30 @@ const ratingSchema = new Schema({
   author: { type: String },
 });
 
-const bookSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-    unique: true,
+const bookSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    author: {
+      type: String,
+    },
+    ISBN: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    image: { type: String },
+    category: { type: String },
+    ratings: [ratingSchema],
   },
-  author: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  ISBN: {
-    type: String,
-    unique: true,
-  },
-  ratings: [ratingSchema],
-});
+  // { timestamps: true },
+  {
+    versionKey: false,
+  }
+);
 
-var Books = mongooose.model("Book", bookSchema);
-module.exports = Books;
+var Books = mongoose.model("Book", bookSchema);
+export default Books;
