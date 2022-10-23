@@ -69,3 +69,11 @@ const server = createServer((req, res) => {
 app.listen(port || 3000, () => {
   console.log(`Connected to backend on port ${port}`);
 });
+
+// app.use(function (err, req, res, next) {
+//   res.locals.message = err.message;
+//   // res.locals.error = req.app.get("env") === "development";
+
+//   res.status(err.status || 500);
+//   res.render("error");
+// });

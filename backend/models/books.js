@@ -31,7 +31,7 @@ const bookSchema = new Schema(
     category: { type: String },
     ratings: [ratingSchema],
   },
-  // { timestamps: true },
+  { timestamps: true },
   {
     versionKey: false,
   }
