@@ -30,7 +30,7 @@ const Add = () => {
 
   console.log(book);
   return (
-    <div classonChange={handleChange} Name="form">
+    <div className="form" classonChange={handleChange} Name="form">
       <h1>Add new book</h1>
       <input
         type="text"
@@ -62,7 +62,11 @@ const Add = () => {
         onChange={handleChange}
         name="category"
       />
-      <button onClick={handleClick}>Add</button>
+      <div className="form-submit">
+        <button className="add-btn" onClick={handleClick}>
+          Add
+        </button>
+      </div>
     </div>
   );
 };

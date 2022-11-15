@@ -31,7 +31,7 @@ const Books = () => {
           </div>
         ))}
       </div>
-      <button>
+      <button className="add-btn">
         <Link to="/add">Add new Book</Link>
       </button>
     </div>
