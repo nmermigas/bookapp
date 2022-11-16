@@ -31,16 +31,16 @@ const Add = () => {
   console.log(book);
   return (
     <div className="form" classonChange={handleChange} Name="form">
-      <h1>Add new book</h1>
+      <h1>Πρόσθεσε ένα νέο βιβλίο</h1>
       <input
         type="text"
-        placeholder="title"
+        placeholder="τίτλος"
         onChange={handleChange}
         name="title"
       />
       <input
         type="text"
-        placeholder="author"
+        placeholder="συγγραφέας"
         onChange={handleChange}
         name="author"
       />
@@ -50,7 +50,7 @@ const Add = () => {
         onChange={handleChange}
         name="ISBN"
       />
-      <input
+      {/* <input
         type="text"
         placeholder="image"
         onChange={handleChange}
@@ -61,7 +61,7 @@ const Add = () => {
         placeholder="category"
         onChange={handleChange}
         name="category"
-      />
+      /> */}
       <div className="form-submit">
         <button className="add-btn" onClick={handleClick}>
           Add

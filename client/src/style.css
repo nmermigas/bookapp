@@ -42,4 +42,10 @@ img {
 
 .form {
   gap: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+::placeholder {
+  text-align: center;
 }
