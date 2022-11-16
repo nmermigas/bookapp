@@ -8,11 +8,13 @@
 }
 
 .books {
+  margin-top: 30%;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .book {
-  flex: 1;
+  flex: 10%;
 }
 
 img {

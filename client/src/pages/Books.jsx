@@ -22,12 +22,11 @@ const Books = () => {
       <div className="books">
         {books.map((book) => (
           <div className="book" key={book._id}>
-            <h1>hi</h1>
             <h2>{book.title}</h2>
             <h3>{book.author}</h3>
             {book.image && <img src={book.image} alt=""></img>}
-            {book.category && <h4>{book.category}</h4>}
-            <h5>{book.ISBN}</h5>
+            {book.category && <h5>{book.category}</h5>}
+            <h6>{book.ISBN}</h6>
           </div>
         ))}
       </div>
