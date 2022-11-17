@@ -14,7 +14,9 @@
 }
 
 .book {
-  flex: 10%;
+  flex: 49%;
+  border: 1px solid black;
+  margin: 3px;
 }
 
 img {
