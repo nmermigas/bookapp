@@ -31,22 +31,23 @@ const Add = () => {
     }
   };
 
-  const handleClick = async (e) => {
-    e.preventDefault();
+  const getBook = async (book1) => {
     try {
-      // var title = book.title;
-      var title = book.title;
-      // var author = book.author;
-      var author = book.author;
-      console.log(title);
-      console.log(author);
+      var title = book1.title;
+      var author = book1.author;
+      var inauthor_url_parameter = "";
 
-      // var isbn = book.isbn;
-      // console.log(title, author);
+      if (author) {
+        inauthor_url_parameter = `+inauthor:${author}`;
+      }
+
       const res = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q="${title}"+inauthor:${author}&maxResults=1`
+        `https://www.googleapis.com/books/v1/volumes?q="${title}"${inauthor_url_parameter}&maxResults=5`
       );
-      console.dir(res.data.items[0].volumeInfo);
+      // console.dir(res.data.items[0].volumeInfo);
+
+      console.dir(res.data.items);
+
       var title_api = res.data.items[0].volumeInfo.title;
       var author_api = res.data.items[0].volumeInfo.authors[0];
       var image_api = res.data.items[0].volumeInfo.imageLinks
@@ -57,7 +58,6 @@ const Add = () => {
         : "Δεν υπάρχει διαθέσιμη κατηγορία.";
       var isbn_api =
         res.data.items[0].volumeInfo.industryIdentifiers[0].identifier;
-      // var isbn_api = "5555";
 
       var newBook = {
         title: title_api,
@@ -67,6 +67,16 @@ const Add = () => {
         image: image_api,
       };
 
+      return newBook;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      let newBook = getBook(book);
       postBook(newBook);
       navigate("/books");
     } catch (err) {
