@@ -18,7 +18,9 @@ const Books = () => {
   }, []);
   return (
     <div>
-      <h1>All the books are the following</h1>
+      <div className="title">
+        <h1>All the books are the following</h1>
+      </div>
       <div className="books">
         {books.map((book) => (
           <div className="book" key={book._id}>
@@ -29,10 +31,17 @@ const Books = () => {
             <h6>{book.ISBN}</h6>
           </div>
         ))}
+        <div className="btn">
+          <button className="add-btn">
+            <Link to="/add">Add new Book</Link>
+          </button>
+        </div>
       </div>
-      <button className="add-btn">
-        <Link to="/add">Add new Book</Link>
-      </button>
+      <div>
+        {/* <button className="add-btn">
+          <Link to="/add">Add new Book</Link>
+        </button> */}
+      </div>
     </div>
   );
 };

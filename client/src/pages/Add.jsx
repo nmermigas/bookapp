@@ -21,7 +21,7 @@ const Add = () => {
   };
 
   const postBook = async (book1) => {
-    console.log(`postBook. ${JSON.stringify(book1)}`);
+    console.log(`postBook:${JSON.stringify(book1)}`);
     // e.preventDefault();
     try {
       let response = await axios.post("http://localhost:3000/books/", book1);
@@ -31,10 +31,10 @@ const Add = () => {
     }
   };
 
-  const getBook = async (book1) => {
+  const getBook = async () => {
     try {
-      var title = book1.title;
-      var author = book1.author;
+      var title = book.title;
+      var author = book.author;
       var inauthor_url_parameter = "";
 
       if (author) {
@@ -42,7 +42,7 @@ const Add = () => {
       }
 
       const res = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q="${title}"${inauthor_url_parameter}&maxResults=5`
+        `https://www.googleapis.com/books/v1/volumes?q="${title}+inauthor:${author}&maxResults=5`
       );
       // console.dir(res.data.items[0].volumeInfo);
 
@@ -67,6 +67,9 @@ const Add = () => {
         image: image_api,
       };
 
+      console.log(JSON.stringify(newBook));
+      console.log("returning book... for post method");
+
       return newBook;
     } catch (err) {
       console.error(err);
@@ -76,7 +79,10 @@ const Add = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      let newBook = getBook(book);
+      var newBook = await getBook(book);
+
+      console.log(`HandleClick newBook1: ${newBook}`);
+
       postBook(newBook);
       navigate("/books");
     } catch (err) {
