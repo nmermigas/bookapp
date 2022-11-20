@@ -93,45 +93,36 @@ const Add = () => {
   // console.log(book.title);
 
   return (
-    <div className="form" onChange={handleChange} Name="form">
-      <h2>{JSON.stringify(book.title)}</h2>
-      <h2>{JSON.stringify(book.author)}</h2>
-      <h1>Πρόσθεσε ένα νέο βιβλίο</h1>
-      <input
-        type="text"
-        placeholder="τίτλος"
-        onChange={handleChange}
-        name="title"
-      />
-      <input
-        type="text"
-        placeholder="συγγραφέας"
-        onChange={handleChange}
-        name="author"
-      />
-      <input
-        type="text"
-        placeholder="ISBN"
-        onChange={handleChange}
-        name="ISBN"
-      />
-
-      {/* <input
-        type="text"
-        placeholder="image"
-        onChange={handleChange}
-        name="image"
-      />
-      <input
-        type="text"
-        placeholder="category"
-        onChange={handleChange}
-        name="category"
-      /> */}
-      <div className="form-submit">
-        <button className="add-btn" onClick={handleClick}>
-          Add
-        </button>
+    <div>
+      <div className="header">
+        <h1>Πρόσθεσε ένα νέο βιβλίο</h1>
+      </div>
+      <div className="form" onChange={handleChange} Name="form">
+        <div className="form-inputs">
+          <input
+            type="text"
+            placeholder="τίτλος"
+            onChange={handleChange}
+            name="title"
+          />
+          <input
+            type="text"
+            placeholder="συγγραφέας"
+            onChange={handleChange}
+            name="author"
+          />
+          <input
+            type="text"
+            placeholder="ISBN"
+            onChange={handleChange}
+            name="ISBN"
+          />
+        </div>
+        <div className="form-submit">
+          <button className="add-btn" onClick={handleClick}>
+            Πρόσθεσε
+          </button>
+        </div>
       </div>
     </div>
   );

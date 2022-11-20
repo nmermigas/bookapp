@@ -32,7 +32,7 @@ const Books = () => {
           </div>
         ))}
         <div className="btn">
-          <button className="add-btn">
+          <button className="add">
             <Link to="/add">Add new Book</Link>
           </button>
         </div>
